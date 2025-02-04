@@ -1,14 +1,35 @@
+/**
+ * Search component that provides a debounced search input field.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.placeholder - The placeholder text for the search input.
+ *
+ * @returns {JSX.Element} The rendered search component.
+ *
+ * This component uses the `useDebouncedCallback` hook to handle search input changes
+ * with a debounce delay of 300ms. It updates the URL query parameter `query` based on
+ * the input value. If the input is empty, the `query` parameter is removed from the URL.
+ *
+ * The component also includes a magnifying glass icon from the `@heroicons/react` library.
+ *
+ * @example
+ * ```tsx
+ * <Search placeholder="Search..." />
+ * ```
+ */
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
     if (term) {
       params.set("query", term);
     } else {
