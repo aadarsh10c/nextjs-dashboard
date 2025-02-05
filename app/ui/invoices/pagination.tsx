@@ -16,13 +16,13 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const createPageURL = (page: number | string) => {
     const params = new URLSearchParams(searchParams);
     if (typeof page === "string") {
-      params.set("page", page);
+      // params.set("page", page);
+      page = Number(page);
+    }
+    if (page <= 1) {
+      params.delete("page");
     } else {
-      if (page <= 1) {
-        params.delete("page");
-      } else {
-        params.set("page", page.toString());
-      }
+      params.set("page", page.toString());
     }
     return `${pathname}?${params.toString()}`;
   };
