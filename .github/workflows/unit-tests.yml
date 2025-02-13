@@ -16,29 +16,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.15.4
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 'lts/*'
-        cache: 'pnpm'
-    - run: pnpm i
-    - run: pnpm test
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
   Build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.15.4
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 'lts/*'
-        cache: 'pnpm'
-    - run: pnpm i
-    - run: pnpm run build
+        cache: 'npm'
+    - run: npm i
+    - run: npm run build
