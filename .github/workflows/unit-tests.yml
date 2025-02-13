@@ -42,3 +42,5 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm run build
+    env:
+      POSTGRES_URL: ${{ secrets.POSTGRES_URL || 'default_connection_string' }}
