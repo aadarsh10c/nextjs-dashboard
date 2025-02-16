@@ -4,6 +4,8 @@ import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 
+//sample comment
+
 export default async function InvoicesTable({
   query,
   currentPage,
